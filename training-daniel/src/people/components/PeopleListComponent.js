@@ -1,12 +1,13 @@
 import PersonComponent from "./PersonComponent";
 import "./PeopleListComponent.scss";
-import { logger, peopleModel } from "../PeopleApplicationContext";
+import { peopleModel } from "../PeopleApplicationContext";
 import { useState } from "react";
+import pubsubInstance from "pubsub.js";
 
 function PeopleListComponent() {
   const [state, setState] = useState({ people: peopleModel.allPeople() });
 
-  logger.subscribe("people.add", () => {
+  pubsubInstance.subscribe("people.add", () => {
     setState({ people: peopleModel.allPeople() });
   });
 
