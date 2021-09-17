@@ -1,7 +1,6 @@
 import { Component } from "react";
 import { Form, Button } from "react-bootstrap";
 import { peopleModel } from "../PeopleApplicationContext";
-import pubsubInstance from "pubsub.js";
 
 class PersonInputFormComponent extends Component {
   state = {
@@ -22,7 +21,6 @@ class PersonInputFormComponent extends Component {
       fields.height,
       fields.gender
     );
-    pubsubInstance.publish("people.add");
   };
 
   handleChange = (event) => {

@@ -1,4 +1,5 @@
 import Person from "./Person";
+import pubsubInstance from "pubsub.js";
 
 class PeopleModel {
   constructor() {
@@ -10,6 +11,7 @@ class PeopleModel {
     let person = new Person(lastname, firstname, height, gender, this.counter);
     this.counter++;
     this.people.push(person);
+    pubsubInstance.publish("people.add");
     return person;
   }
 
