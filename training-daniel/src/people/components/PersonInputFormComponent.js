@@ -1,5 +1,7 @@
 import { Component } from "react";
 import { Form, Button } from "react-bootstrap";
+import { logger } from "../PeopleApplicationContext";
+import { peopleModel } from "../PeopleApplicationContext";
 
 class PersonInputFormComponent extends Component {
   state = {
@@ -14,7 +16,13 @@ class PersonInputFormComponent extends Component {
   handleFormSubmit = (event) => {
     event.preventDefault();
     let fields = this.state.fields;
-    this.props.updateList(fields);
+    peopleModel.create(
+      fields.lastname,
+      fields.firstname,
+      fields.height,
+      fields.gender
+    );
+    logger.publish("people.add");
   };
 
   handleChange = (event) => {
