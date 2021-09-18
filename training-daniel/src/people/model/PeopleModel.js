@@ -4,12 +4,11 @@ import pubsubInstance from "pubsub.js";
 class PeopleModel {
   constructor() {
     this.people = [];
-    this.counter = 0;
   }
 
   create(lastname, firstname, height, gender) {
-    let person = new Person(lastname, firstname, height, gender, this.counter);
-    this.counter++;
+    let id = Math.random() * 100000000000000000n;
+    let person = new Person(lastname, firstname, height, gender, id);
     this.people.push(person);
     pubsubInstance.publish("people.add");
     return person;

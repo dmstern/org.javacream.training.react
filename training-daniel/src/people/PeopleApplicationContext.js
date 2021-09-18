@@ -1,12 +1,23 @@
 import PeopleModel from "./model/PeopleModel";
 import Person from "./model/Person";
+import PeopleService from "./services/PeopleService";
 
-let applicationTitle = "PEOPLE";
-let applicationFooter = "(c) d_mstern";
-let peopleModel = new PeopleModel();
-peopleModel.create("Galindo", "Antonio", 190, "male");
-peopleModel.create("Morgenstern", "Daniel", 183, "male");
-peopleModel.create("Ünal", "Aylin", 170, "female");
-let user = new Person("Mustermann", "Max", 180, "diverse");
+const url = "http://h2908727.stratoserver.net:8080/people";
+const applicationTitle = "PEOPLE";
+const applicationFooter = "(c) d_mstern";
+const peopleModel = new PeopleModel();
+const peopleService = new PeopleService();
+peopleService.getPeople().then((people) => {
+  peopleModel.people = people;
+});
 
-export { peopleModel, applicationTitle, applicationFooter, user };
+const user = new Person("Mustermann", "Max", 180, "diverse");
+
+export {
+  peopleModel,
+  applicationTitle,
+  applicationFooter,
+  user,
+  peopleService,
+  url,
+};
